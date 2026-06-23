@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.danil.labtemp.controller.DashboardController">
+    <left>
+        <VBox prefWidth="220.0" spacing="20.0" style="-fx-background-color: #2b2b2b;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <children>
+                <Label text="LabTemp" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="26.0" />
+                    </font>
+                </Label>
+                <Label fx:id="currentTempLabel" text="Trenutna: -- °C" textFill="#00ffcc">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="statusLabel" text="Status: Čekanje" textFill="#aeeaaa" />
+                <Button fx:id="importButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleImport" text="Import Data" />
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <SplitPane dividerPositions="0.6" orientation="VERTICAL" BorderPane.alignment="CENTER">
+            <items>
+                <LineChart fx:id="temperatureChart" title="Pregled Temperature">
+                    <xAxis>
+                        <CategoryAxis label="Vreme" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Temperatura (°C)" side="LEFT" />
+                    </yAxis>
+                </LineChart>
+                <TableView fx:id="measurementTable" prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                        <TableColumn prefWidth="120.0" text="Datum" />
+                        <TableColumn prefWidth="120.0" text="Vreme" />
+                        <TableColumn prefWidth="150.0" text="Temperatura (°C)" />
+                        <TableColumn prefWidth="150.0" text="Status" />
+                    </columns>
+                </TableView>
+            </items>
+        </SplitPane>
+    </center>
+</BorderPane>
