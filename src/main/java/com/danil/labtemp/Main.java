@@ -12,13 +12,17 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/dashboard.fxml"));
+        // Promenjeno da učitava Login.fxml umesto dashboard.fxml
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/login.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
+        // Login prozor je manji (350x400)
+        Scene scene = new Scene(fxmlLoader.load(), 350, 400);
 
-        primaryStage.setTitle("LabTemp Monitoring System");
+        primaryStage.setTitle("LabTemp - Prijava na sistem");
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false); // Login prozor ne treba da menja veličinu
 
+        // Pravilno gašenje na "X"
         primaryStage.setOnCloseRequest(event -> {
             Platform.exit();
             System.exit(0);
