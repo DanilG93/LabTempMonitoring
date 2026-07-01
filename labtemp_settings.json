@@ -1,0 +1,13 @@
+{
+  "companyName": "Proba",
+  "companyAddress": "xaxaxa",
+  "devices": [
+    {
+      "name": "Frizider Hladni Lanac",
+      "minTemp": 2.0,
+      "maxTemp": 10.0,
+      "dataRegex": "3242f23c2",
+      "alarmRegex": "342342"
+    }
+  ]
+}
