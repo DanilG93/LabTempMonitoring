@@ -1,6 +1,7 @@
 package com.danil.labtemp.service;
 
 import com.danil.labtemp.model.AppConfig;
+import com.danil.labtemp.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -9,6 +10,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SettingsManager {
     private static final String FILE_PATH = "labtemp_settings.json";
@@ -18,16 +20,27 @@ public class SettingsManager {
     public static AppConfig loadSettings() {
         File file = new File(FILE_PATH);
         if (!file.exists()) {
-            return new AppConfig("", "", new ArrayList<>());
+            return createDefaultConfig();
         }
 
         try (FileReader reader = new FileReader(file)) {
 
-            return gson.fromJson(reader, AppConfig.class);
+            AppConfig config = gson.fromJson(reader, AppConfig.class);
+
+            if (config == null || config.users().isEmpty()) {
+                config = new AppConfig(
+                        config.companyName() == null ? "" : config.companyName(),
+                        config.companyAddress() == null ? "" : config.companyAddress(),
+                        config.devices() == null ? new ArrayList<>() : config.devices(),
+                        List.of(new User("admin", "admin", "ADMIN", true))
+                );
+                saveSettings(config);
+            }
+            return config;
 
         } catch (IOException e) {
             e.printStackTrace();
-            return new AppConfig("Greška", "Greška pri učitavanju", new ArrayList<>());
+            return createDefaultConfig();
         }
     }
 
@@ -38,5 +51,9 @@ public class SettingsManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static AppConfig createDefaultConfig() {
+        return new AppConfig("", "", new ArrayList<>(), List.of(new User("admin", "admin", "ADMIN", true)));
     }
 }

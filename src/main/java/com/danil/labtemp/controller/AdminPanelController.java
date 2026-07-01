@@ -67,6 +67,7 @@ public class AdminPanelController {
 
         deviceList.addAll(currentConfig.devices());
         deviceTable.setItems(deviceList);
+
     }
 
     @FXML
@@ -74,7 +75,7 @@ public class AdminPanelController {
         String name = companyNameField.getText();
         String address = companyAddressField.getText();
 
-        currentConfig = new AppConfig(name, address, new ArrayList<>(deviceList));
+        currentConfig = new AppConfig(name, address, new ArrayList<>(deviceList), currentConfig.users());
         SettingsManager.saveSettings(currentConfig);
 
         showAlert("Uspešno", "Podaci o firmi su uspešno sačuvani u fajl!");
@@ -92,7 +93,7 @@ public class AdminPanelController {
             Device newDevice = new Device(name, min, max, dataRegex, alarmRegex);
             deviceList.add(newDevice);
 
-            currentConfig = new AppConfig(companyNameField.getText(), companyAddressField.getText(), new ArrayList<>(deviceList));
+            currentConfig = new AppConfig(companyNameField.getText(), companyAddressField.getText(), new ArrayList<>(deviceList), currentConfig.users());
             SettingsManager.saveSettings(currentConfig);
 
             deviceNameField.clear();
@@ -112,7 +113,7 @@ public class AdminPanelController {
         if (selected != null) {
             deviceList.remove(selected);
 
-            currentConfig = new AppConfig(companyNameField.getText(), companyAddressField.getText(), new ArrayList<>(deviceList));
+            currentConfig = new AppConfig(companyNameField.getText(), companyAddressField.getText(), new ArrayList<>(deviceList), currentConfig.users());
             SettingsManager.saveSettings(currentConfig);
         } else {
             showAlert("Upozorenje", "Izaberite aparat iz tabele za brisanje.");
