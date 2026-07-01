@@ -13,7 +13,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         // Promenjeno da učitava Login.fxml umesto dashboard.fxml
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/admin-panel.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/login.fxml"));
 
         // Login prozor je manji (350x400)
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);

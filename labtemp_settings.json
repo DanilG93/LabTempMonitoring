@@ -1,13 +1,13 @@
 {
-  "companyName": "Proba",
-  "companyAddress": "xaxaxa",
-  "devices": [
+  "companyName": "",
+  "companyAddress": "",
+  "devices": [],
+  "users": [
     {
-      "name": "Frizider Hladni Lanac",
-      "minTemp": 2.0,
-      "maxTemp": 10.0,
-      "dataRegex": "3242f23c2",
-      "alarmRegex": "342342"
+      "username": "admin",
+      "password": "mama",
+      "role": "ADMIN",
+      "requirePasswordChange": false
     }
   ]
 }
