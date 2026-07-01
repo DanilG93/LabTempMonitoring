@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2b2b2b;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.danil.labtemp.controller.AdminPanelController">
+    <children>
+        <TabPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <tabs>
+
+                <Tab text="Podešavanje Firme">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <VBox layoutX="33.0" layoutY="31.0" prefHeight="311.0" prefWidth="400.0" spacing="15.0">
+                                    <children>
+                                        <Label text="Osnovni podaci o sistemu" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="20.0" />
+                                            </font>
+                                        </Label>
+                                        <VBox spacing="5.0">
+                                            <children>
+                                                <Label text="Naziv firme/laboratorije:" textFill="#b5b5b5" />
+                                                <TextField fx:id="companyNameField" style="-fx-background-color: #3b3b3b; -fx-text-fill: white;" />
+                                            </children>
+                                        </VBox>
+                                        <VBox spacing="5.0">
+                                            <children>
+                                                <Label text="Adresa:" textFill="#b5b5b5" />
+                                                <TextField fx:id="companyAddressField" style="-fx-background-color: #3b3b3b; -fx-text-fill: white;" />
+                                            </children>
+                                        </VBox>
+                                        <Button mnemonicParsing="false" onAction="#handleSaveCompany" style="-fx-background-color: #00ffcc; -fx-font-weight: bold;" text="Sačuvaj Podatke">
+                                            <VBox.margin>
+                                                <Insets top="10.0" />
+                                            </VBox.margin>
+                                        </Button>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+                <Tab text="Upravljanje Aparatima (Uređaji i Regex)">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane dividerPositions="0.35" layoutX="14.0" layoutY="14.0" prefHeight="160.0" prefWidth="200.0" style="-fx-background-color: #2b2b2b;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                            <children>
+                                                <VBox layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                                    <children>
+                                                        <Label text="Novi Aparat" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="System Bold" size="16.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <TextField fx:id="deviceNameField" promptText="Naziv (npr. Frižider 1)" style="-fx-background-color: #3b3b3b; -fx-text-fill: white;" />
+                                                        <HBox spacing="10.0">
+                                                            <children>
+                                                                <TextField fx:id="minTempField" promptText="Min Temp" style="-fx-background-color: #3b3b3b; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                                                                <TextField fx:id="maxTempField" promptText="Max Temp" style="-fx-background-color: #3b3b3b; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                                                            </children>
+                                                        </HBox>
+                                                        <Label text="Pravila čitanja (Regex)" textFill="WHITE">
+                                                            <VBox.margin>
+                                                                <Insets top="10.0" />
+                                                            </VBox.margin>
+                                                        </Label>
+                                                        <TextField fx:id="dataRegexField" promptText="Regex za DATA fajlove" style="-fx-background-color: #3b3b3b; -fx-text-fill: white;" />
+                                                        <TextField fx:id="alarmRegexField" promptText="Regex za ALARM fajlove" style="-fx-background-color: #3b3b3b; -fx-text-fill: white;" />
+                                                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleAddDevice" style="-fx-background-color: #00ffcc; -fx-font-weight: bold;" text="Dodaj Aparat">
+                                                            <VBox.margin>
+                                                                <Insets top="15.0" />
+                                                            </VBox.margin>
+                                                        </Button>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                            <children>
+                                                <VBox layoutX="71.0" layoutY="68.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                                    <children>
+                                                        <TableView fx:id="deviceTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                            <columns>
+                                                                <TableColumn fx:id="nameCol" prefWidth="150.0" text="Naziv Aparata" />
+                                                                <TableColumn fx:id="minCol" prefWidth="75.0" text="Min °C" />
+                                                                <TableColumn fx:id="maxCol" prefWidth="75.0" text="Max °C" />
+                                                                <TableColumn fx:id="regexCol" prefWidth="180.0" text="Data Regex Uslov" />
+                                                            </columns>
+                                                        </TableView>
+                                                        <Button mnemonicParsing="false" onAction="#handleDeleteDevice" style="-fx-background-color: #ff6666; -fx-text-fill: white; -fx-font-weight: bold;" text="Obriši izabrano" />
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </AnchorPane>
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>
